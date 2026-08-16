@@ -15,10 +15,10 @@ async function seed() {
 
   // Insert site settings
   await db.insert(siteSettings).values({
-    storeName: "یخبندان",
-    slogan: "تازه، خنک، خوشمزه",
-    phone: "۰۲۱-۱۲۳۴۵۶۷۸",
-    address: "تهران، خیابان ولیعصر، پلاک ۱۲۳",
+    storeName: "باباعلی",
+    slogan: "اصالت در طعم",
+    phone: "۰۲۵-۳۴۴۳۳۴۱۵",
+    address: "قم,روستای ورجان,بستنی باباعلی",
     instagram: "yakhbandan_shop",
     workingHours: "هر روز ۱۰ صبح تا ۱۱ شب",
     shortDescription: "بهترین لبنیات و بستنی‌های سنتی",
