@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  nextjs:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./:/app:cached
+    environment:
+      - NEXT_PUBLIC_API_URL=http://django:8000/api
+    command: /bin/sh -c "npm ci --silent && npm run build --silent && npm start"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - django
+    networks:
+      - appnet
+
+  django:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    volumes:
+      - static_data:/app/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - appnet
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dairy_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - appnet
+
+volumes:
+  postgres_data:
+  static_data:
+
+networks:
+  appnet:
+    driver: bridge

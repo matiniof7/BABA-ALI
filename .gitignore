@@ -1,0 +1,23 @@
+# Node
+node_modules/
+.next/
+out/
+.env
+.env.local
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+venv/
+.venv/
+
+# Django staticfiles
+backend/staticfiles/
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
