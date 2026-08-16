@@ -17,9 +17,9 @@ async function seed() {
   await db.insert(siteSettings).values({
     storeName: "یخبندان",
     slogan: "تازه، خنک، خوشمزه",
-    phone: "۰۲۱-۱۲۳۴۵۶۷۸",
-    address: "تهران، خیابان ولیعصر، پلاک ۱۲۳",
-    instagram: "yakhbandan_shop",
+    phone: "025-34433415",
+    address: "قم، روستای ورجان، روبروی سنگبری، لبنیات و بستنی بابا علی",
+    instagram: "https://www.instagram.com/baba_ali_verjan?igsh=MW84bHN3Y2o2ZnU4cw==",
     workingHours: "هر روز ۱۰ صبح تا ۱۱ شب",
     shortDescription: "بهترین لبنیات و بستنی‌های سنتی و مدرن",
   });

@@ -29,6 +29,20 @@ export async function generateMetadata({
   };
 }
 
+// SVG Icons
+const SunIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <circle cx="12" cy="12" r="5"/>
+    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
+
 export default async function ProductDetailPage({
   params,
 }: {
@@ -50,23 +64,25 @@ export default async function ProductDetailPage({
       <header className="header">
         <div className="container header-inner">
           <Link href="/menu" className="header-brand">
-            <span className="header-brand-icon">🍦</span>
-            <span>{settings.storeName}</span>
+            {settings.storeName}
           </Link>
-          <button
-            className="theme-toggle"
-            id="themeToggle"
-            aria-label="تغییر تم"
-            type="button"
-          >
-            <span id="themeIcon">☀️</span>
-          </button>
+          <div className="header-actions">
+            <button
+              className="theme-toggle"
+              id="themeToggle"
+              aria-label="تغییر تم"
+              type="button"
+            >
+              <span id="sunIcon"><SunIcon /></span>
+              <span id="moonIcon" style={{ display: 'none' }}><MoonIcon /></span>
+            </button>
+          </div>
         </div>
       </header>
 
-      <main className="container product-detail fade-in">
+      <main className="container product-detail">
         <Link href="/menu" className="product-detail-back">
-          → بازگشت به منو
+          ← بازگشت به منو
         </Link>
 
         {product.image && (
@@ -96,19 +112,6 @@ export default async function ProductDetailPage({
               {product.categoryName}
             </span>
           </div>
-          <div className="product-detail-meta-item">
-            <span className="product-detail-meta-label">وضعیت</span>
-            <span
-              className="product-detail-meta-value"
-              style={{
-                color: product.isAvailable
-                  ? "var(--success)"
-                  : "var(--error)",
-              }}
-            >
-              {product.isAvailable ? "موجود" : "فعلاً موجود نیست"}
-            </span>
-          </div>
         </div>
 
         <div className="product-detail-price">
@@ -120,7 +123,7 @@ export default async function ProductDetailPage({
 
         {!product.isAvailable && (
           <div className="product-detail-unavailable">
-            ⚠ فعلاً موجود نیست
+            فعلاً موجود نیست
           </div>
         )}
       </main>
@@ -131,17 +134,19 @@ export default async function ProductDetailPage({
           __html: `
             (function() {
               var toggle = document.getElementById('themeToggle');
-              var icon = document.getElementById('themeIcon');
-              function updateIcon() {
+              var sunIcon = document.getElementById('sunIcon');
+              var moonIcon = document.getElementById('moonIcon');
+              function updateIcons() {
                 var isDark = document.documentElement.classList.contains('dark');
-                icon.textContent = isDark ? '☀️' : '🌙';
+                sunIcon.style.display = isDark ? 'block' : 'none';
+                moonIcon.style.display = isDark ? 'none' : 'block';
               }
-              updateIcon();
+              updateIcons();
               toggle.addEventListener('click', function() {
                 document.documentElement.classList.toggle('dark');
                 var isDark = document.documentElement.classList.contains('dark');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                updateIcon();
+                updateIcons();
               });
             })();
           `,

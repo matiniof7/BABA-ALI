@@ -11,9 +11,9 @@ export async function GET() {
     result[0] || {
       storeName: "لبنیات و بستنی",
       slogan: "",
-      phone: "",
-      address: "",
-      instagram: "",
+      phone: "025-34433415",
+      address: "قم، روستای ورجان، روبروی سنگبری، لبنیات و بستنی بابا علی",
+      instagram: "https://www.instagram.com/baba_ali_verjan?igsh=MW84bHN3Y2o2ZnU4cw==",
       workingHours: "",
       shortDescription: "",
       logo: "",
